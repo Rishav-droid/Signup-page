@@ -1,0 +1,75 @@
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Set up the perspective for the 3D effect */
+.perspective-container {
+    perspective: 1500px;
+}
+
+/* The flipper element holds all three faces */
+.flipper {
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+/* Common styles for all panels */
+.front, .back, .forgot {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* Safari */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease-in-out;
+}
+
+/* Default State (Sign-in shown) */
+.show-signin .front {
+    opacity: 1;
+    transform: rotateY(0deg) translateZ(1px);
+}
+.show-signin .back {
+    opacity: 0;
+    transform: rotateY(45deg) translateX(100%);
+}
+.show-signin .forgot {
+    opacity: 0;
+    transform: rotateY(-45deg) translateX(-100%);
+}
+
+/* Sign-up Shown State */
+.show-signup .front {
+    opacity: 0;
+    transform: rotateY(-45deg) translateX(-100%);
+}
+.show-signup .back {
+    opacity: 1;
+    transform: rotateY(0deg) translateZ(1px);
+}
+.show-signup .forgot {
+    opacity: 0;
+    transform: rotateY(-45deg) translateX(-100%);
+}
+
+/* Forgot Password Shown State */
+.show-forgot .front {
+    opacity: 0;
+    transform: rotateY(45deg) translateX(100%);
+}
+.show-forgot .back {
+    opacity: 0;
+    transform: rotateY(45deg) translateX(100%);
+}
+.show-forgot .forgot {
+    opacity: 1;
+    transform: rotateY(0deg) translateZ(1px);
+}
+
+/* Utility for animation delay */
+.animation-delay-4000 {
+    animation-delay: -4s;
+}
